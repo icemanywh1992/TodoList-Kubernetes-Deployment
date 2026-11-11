@@ -17,6 +17,9 @@ RUN npm run build:app
 # Serve the compiled application
 FROM nginx:stable-alpine
 
+# Install available Alpine security updates
+RUN apk upgrade --no-cache
+
 COPY --from=build /app/build /usr/share/nginx/html
 
 EXPOSE 80
